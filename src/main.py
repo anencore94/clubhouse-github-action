@@ -14,6 +14,7 @@ if __name__ == "__main__":
     closed_id = os.environ["INPUT_PR_CLOSED"]
 
     print(open_id)
+    print(type(open_id))
     print(merged_id)
     print(closed_id)
 
@@ -25,8 +26,9 @@ if __name__ == "__main__":
     BASE_URL = "https://api.clubhouse.io/api/v3/stories/"
     parsed_story_id = str(6027)
 
-    request_body = dict()
-    request_body["workflow_state_id"] = open_id
+    request_body = {
+        "workflow_state_id" : str(open_id)
+    }
 
     res = requests.put(url=BASE_URL + parsed_story_id, data=request_body, headers=headers)
 
