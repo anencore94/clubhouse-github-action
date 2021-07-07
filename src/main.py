@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import os
+import yaml
 import requests
 
 if __name__ == "__main__":
@@ -9,3 +12,8 @@ if __name__ == "__main__":
 
     print(my_output)
     print(config_path)
+
+    with open(config_path) as f:
+        data_loaded = yaml.safe_load(f)
+
+    print(data_loaded)
