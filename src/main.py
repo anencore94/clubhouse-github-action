@@ -30,7 +30,13 @@ if __name__ == "__main__":
         "workflow_state_id" : str(open_id)
     }
 
-    res = requests.put(url=BASE_URL + parsed_story_id, data=request_body, headers=headers)
-
+    res = requests.put(url=BASE_URL + parsed_story_id, data=str(request_body), headers=headers)
     print(res.status_code)
     print(res.text)
+
+    try:
+        res.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        # Whoops it wasn't a 200
+        exit(1)
+
