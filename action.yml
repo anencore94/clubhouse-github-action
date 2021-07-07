@@ -8,6 +8,15 @@ inputs:
   clubhouse_api_token:
     description: "clubhouse api token"
     required: true
+  pr_opened:
+    description: "desired clubhouse workflow state if pr opened"
+    required: true
+  pr_merged:
+    description: "desired clubhouse workflow state if pr merged"
+    required: true
+  pr_closed:
+    description: "desired clubhouse workflow state if pr closed"
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"

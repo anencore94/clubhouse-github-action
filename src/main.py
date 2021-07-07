@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import os
-import yaml
 import requests
 
 if __name__ == "__main__":
     print("hello world")
+
     clubhouse_api_token = os.environ["INPUT_CLUBHOUSE_API_TOKEN"]
-    config_path = os.environ["INPUT_CONFIG_PATH"]
-    my_output = f"Hello {clubhouse_api_token}"
+    print(clubhouse_api_token)
 
-    print(my_output)
-    print(config_path)
+    open_id = os.environ["INPUT_PR_OPENED"]
+    merged_id = os.environ["INPUT_PR_MERGED"]
+    closed_id = os.environ["INPUT_PR_CLOSED"]
 
-    with open(config_path) as f:
-        data_loaded = yaml.safe_load(f)
-
-    print(data_loaded)
+    print(open_id)
+    print(merged_id)
+    print(closed_id)
