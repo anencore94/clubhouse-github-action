@@ -10,6 +10,9 @@ def parse_from_pr_body():
 
 if __name__ == "__main__":
     print(os.environ)
+    with open('/github/workflow/event.json') as f:
+        a = json.load(f)
+        print(a)
 
     exit(1)
     clubhouse_api_token = os.environ["INPUT_CLUBHOUSE_API_TOKEN"]
