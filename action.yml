@@ -1,10 +1,13 @@
 name: 'hello world'
 description: 'add actions'
 
+#runs:
+#  using: "composite"
+#  steps:
+#    - run: python -m pip install PyGithub
+#      shell: bash
+#    - run: python ${{ github.action_path }}/src/main.py
+#      shell: bash
 runs:
-  using: "composite"
-  steps:
-    - run: python -m pip install PyGithub
-      shell: bash
-    - run: python ${{ github.action_path }}/src/main.py
-      shell: bash
+  using: "docker"
+  image: "Dockerfile"
