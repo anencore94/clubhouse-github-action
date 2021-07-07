@@ -1,0 +1,12 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'CH-GH-TEST'
+      uses: anencore94/clubhouse-github-action@main
+      with:
+        clubhouse_api_token: ${{ secrets.CLUBHOUSE_API_TOKEN }}

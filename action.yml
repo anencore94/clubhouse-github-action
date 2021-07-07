@@ -1,13 +1,13 @@
-name: 'hello world'
-description: 'add actions'
-
-#runs:
-#  using: "composite"
-#  steps:
-#    - run: python -m pip install PyGithub
-#      shell: bash
-#    - run: python ${{ github.action_path }}/src/main.py
-#      shell: bash
+name: 'clubhouse github action'
+description: "github action to control clubhouse story's workflow state"
+inputs:
+  config_path:
+    description: "Path of config"
+    required: true
+    default: "./github/ch-gh.yaml"
+  clubhouse_api_token:
+    description: "clubhouse api token"
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
