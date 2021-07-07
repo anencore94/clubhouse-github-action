@@ -1,6 +1,8 @@
 name: Test
 
-on: [push]
+on:
+  pull_request:
+    types: [opened, synchronize, edited, reopened, closed]
 
 jobs:
   test:
@@ -9,6 +11,7 @@ jobs:
     - name: 'CH-GH-TEST'
       uses: anencore94/clubhouse-github-action@main
       with:
+        pr_number: ${{ github.event.number }}
         clubhouse_api_token: ${{ secrets.CLUBHOUSE_API_TOKEN }}
         pr_opened: 500001413
         pr_merged: 500001409
