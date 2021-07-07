@@ -10,6 +10,7 @@ def parse_from_pr_body():
 
 if __name__ == "__main__":
     print(os.environ["INPUT_PR_NUMBER"])
+    print("he")
 
     exit(1)
     # TODO
