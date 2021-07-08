@@ -60,9 +60,9 @@ if __name__ == "__main__":
     print(f"pr_body is {pr_body}")
 
     # parse story id from pr_body
-    stories = []
+    stories = set()
     for candidate in parse_from_pr_body(body=pr_body):
-        stories.append(candidate[10:-1])  # if candidate : Fixes [ch-xxxx], story : xxxx
+        stories.add(candidate[10:-1])  # if candidate : Fixes [ch-xxxx], story : xxxx
     print(stories)
 
     # check current pr's state and find desired_workflow_state_id
