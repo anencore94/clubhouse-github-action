@@ -34,7 +34,6 @@ def parse_from_pr_body(body):
 
 
 if __name__ == "__main__":
-    print("hello")
     gh_token = os.environ["INPUT_GITHUB_TOKEN"]
     pr_num = os.environ["INPUT_PR_NUMBER"]  # 1
     repo_name = os.environ["GITHUB_REPOSITORY"]  # anencore94/clubhouse-github-action
