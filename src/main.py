@@ -18,12 +18,6 @@ def get_desired_workflow_state_id(state):
 
 
 def parse_from_pr_body(body):
-    ch_0_regexp = re.compile(r'\[ch-0\]')
-    if ch_0_regexp.search(body):
-        print("nothing to do with clubhouse story")
-        # pass if ch-0
-        exit(0)
-
     regexp = re.compile(r'Fixes \[ch-\d+\]')
     if regexp.search(body):
         print('matched')
@@ -84,6 +78,8 @@ if __name__ == "__main__":
 
     print("sending clubhouse api")
     for story in stories:
+        if story == "0":
+            continue
         res = requests.put(url=BASE_URL + story, data=json.dumps(request_body), headers=headers)
         try:
             res.raise_for_status()
