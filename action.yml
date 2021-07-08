@@ -1,6 +1,9 @@
 name: 'clubhouse github action'
 description: "github action to control clubhouse story's workflow state"
 inputs:
+  github_token:
+    description: "the github token"
+    required: true
   pr_number:
     description: "the number of current PR"
     required: true
@@ -10,11 +13,8 @@ inputs:
   pr_opened:
     description: "desired clubhouse workflow state if pr opened"
     required: true
-  pr_merged:
-    description: "desired clubhouse workflow state if pr merged"
-    required: true
   pr_closed:
-    description: "desired clubhouse workflow state if pr closed"
+    description: "desired clubhouse workflow state if pr closed or merged"
     required: true
 runs:
   using: "docker"

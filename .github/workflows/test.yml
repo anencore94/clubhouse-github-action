@@ -11,8 +11,8 @@ jobs:
     - name: 'CH-GH-TEST'
       uses: anencore94/clubhouse-github-action@main
       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         pr_number: ${{ github.event.number }}
         clubhouse_api_token: ${{ secrets.CLUBHOUSE_API_TOKEN }}
         pr_opened: 500001413
-        pr_merged: 500001409
         pr_closed: 500001409
