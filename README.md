@@ -1,6 +1,12 @@
 # clubhouse-github-action
 github action to integrate clubhouse.io story
 
+## About
+
+- To automatically control clubhouse story with github PR
+- Using this github action, you could get following benefits
+  - If PR contains `Fixes [ch-xxxx]` on its body,
+    - such clubhouse story will be moved automatically if such pr is opened or closed(merged)
 
 ## Action Setup
 
@@ -9,8 +15,8 @@ github action to integrate clubhouse.io story
 name: Test
 
 on:
-  pull_request:
-    types: [opened, synchronize, edited, reopened, closed]
+  pull_request:  # you should use this github action with on:pull_request
+    types: [opened, synchronize, edited, reopened, closed] # must contain opened and closed
 
 jobs:
   test:
