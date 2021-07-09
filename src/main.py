@@ -63,6 +63,12 @@ if __name__ == "__main__":
     stories = set()
     for candidate in parse_from_pr_body(body=pr_body):
         stories.add(candidate[10:-1])  # if candidate : Fixes [ch-xxxx], story : xxxx
+    
+    # pass, if no story id found
+    if len(stories) == 0:
+        print("no story found in PR body")
+        exit(0)
+
     print(stories)
 
     # check current pr's state and find desired_workflow_state_id
