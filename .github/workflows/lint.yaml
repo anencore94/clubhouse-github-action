@@ -1,0 +1,21 @@
+name: Check Formatting and Linting
+
+on: push
+
+jobs:
+  format-lint:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.6
+      - name: Initial setup
+        shell: bash -l {0}
+        run: make init
+      - name: Format with black
+        shell: bash -l {0}
+        run: make format
+      - name: Lint with pylint, mypy, flake8 using pytest
+        shell: bash -l {0}
+        run: make lint
