@@ -18,7 +18,9 @@ def get_desired_workflow_state_id(state):
 
 
 def parse_from_pr_body(body):
+    candidates = []
     regexp = re.compile(r'Fixes \[ch-\d+\]')
+
     if regexp.search(body):
         print('matched')
         candidates = re.findall(regexp, body)
@@ -59,10 +61,20 @@ if __name__ == "__main__":
     pr_body = res.json()["body"]
     print(f"pr_body is {pr_body}")
 
+    # pass, if body is empty
+    if not pr_body:
+        exit(0)
+
     # parse story id from pr_body
     stories = set()
     for candidate in parse_from_pr_body(body=pr_body):
         stories.add(candidate[10:-1])  # if candidate : Fixes [ch-xxxx], story : xxxx
+    
+    # pass, if no story id found in PR body
+    if len(stories) == 0:
+        print("no story found in PR body")
+        exit(0)
+
     print(stories)
 
     # check current pr's state and find desired_workflow_state_id
