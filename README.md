@@ -5,8 +5,10 @@ github action to integrate clubhouse.io story
 
 - To automatically control clubhouse story with github PR
 - Using this github action, you could get following benefits
-  - If PR contains `Fixes [ch-xxxx]` on its body,
+  - If PR contains `Fixes [ch-xxxx]` or `Fixes [sc-xxxx]` on its body,
     - such clubhouse story will be moved automatically if such pr is opened or closed(merged)
+    - all of github issue linking keywords are supported
+      - close, closed, closes, fix, fixes, fixed, resolve, resolved, resolves
 
 ## Action Setup
 
@@ -23,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'CH-GH-TEST'
-      uses: anencore94/clubhouse-github-action@v1.0.0
+      uses: anencore94/clubhouse-github-action@v2.0.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         pr_number: ${{ github.event.number }}

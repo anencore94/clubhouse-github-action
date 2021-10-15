@@ -7,8 +7,8 @@ inputs:
   pr_number:
     description: "the number of current PR"
     required: true
-  clubhouse_api_token:
-    description: "clubhouse api token"
+  shortcut_api_token:
+    description: "shortcut api token"
     required: true
   pr_opened:
     description: "desired clubhouse workflow state if pr opened"
