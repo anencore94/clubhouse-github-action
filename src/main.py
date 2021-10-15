@@ -20,7 +20,8 @@ def parse_story_from_pr_body(body: str) -> Set[str]:
     """
     candidates = []
     stories: Set[str] = set()
-    regexp = re.compile(r"((F|f)ix(es|ed)?|(C|c)lose(s|d)?|(R|r)esolve(s|d)?) +(\[ch-\d+\]|\[sc-\d+\])")
+    # TODO regexp 변경
+    regexp = re.compile(r"^[FfCcRr].+\d+\]$")
 
     if regexp.search(body):
         print("matched")
