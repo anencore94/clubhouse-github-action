@@ -20,13 +20,16 @@ def parse_story_from_pr_body(body: str) -> Set[str]:
     """
     candidates = []
     stories: Set[str] = set()
-    # TODO regexp 변경
-    regexp = re.compile(r"^[FfCcRr].+\d+\]$")
+    
+    regexp = re.compile(
+        r"(fix|fixes|fixed|resolve|resolved|resolves|close|closed|closes)\s+(\[ch-\d+\]|\[sc-\d+\])",
+        re.IGNORECASE
+        )
 
-    if regexp.search(body):
-        print("matched")
-        candidates = re.findall(regexp, body)
-        print(candidates)
+    for match in regexp.finditer(body):
+        match_string = match.group()
+        print("matched :", match_string)
+        candidates.append(match_string)
 
     if not candidates:
         print("no matching stories")
