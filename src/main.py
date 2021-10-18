@@ -20,11 +20,13 @@ def parse_story_from_pr_body(body: str) -> Set[str]:
     """
     candidates = []
     stories: Set[str] = set()
-    
+
     regexp = re.compile(
-        r"(fix|fixes|fixed|resolve|resolved|resolves|close|closed|closes)\s+(\[ch-\d+\]|\[sc-\d+\])",
-        re.IGNORECASE
-        )
+        r"(fix|fixes|fixed|resolve|resolved|resolves|close|closed|closes)"
+        r"\s+"
+        r"(\[ch-\d+\]|\[sc-\d+\])",
+        re.IGNORECASE,
+    )
 
     for match in regexp.finditer(body):
         match_string = match.group()
@@ -43,7 +45,12 @@ def parse_story_from_pr_body(body: str) -> Set[str]:
     return stories
 
 
+# pylint: disable=too-few-public-methods
 class Settings(BaseSettings):
+    """
+    Env variables
+    """
+
     gh_token: str = Field(..., env="INPUT_GITHUB_TOKEN")
     pr_num: str = Field(..., env="INPUT_PR_NUMBER")
     repo_name: str = Field(..., env="GITHUB_REPOSITORY")
@@ -54,7 +61,7 @@ class Settings(BaseSettings):
 
 if __name__ == "__main__":
     setting = Settings()
-        
+
     # Fetch current pull request body
     headers = {
         "Accept": "application/vnd.github.v3+json",
@@ -91,7 +98,9 @@ if __name__ == "__main__":
 
     # check current pr's state and find desired_workflow_state_id
     pr_state = res.json()["state"]
-    desired_workflow_state_id = setting.open_id if pr_state == "open" else setting.closed_id
+    desired_workflow_state_id = (
+        setting.open_id if pr_state == "open" else setting.closed_id
+    )
 
     print(
         f"----------Following stories: {story_ids} "
@@ -103,7 +112,7 @@ if __name__ == "__main__":
         "Content-Type": "application/json",
         "Shortcut-Token": setting.shortcut_api_token,
     }
-    
+
     BASE_URL = "https://api.app.shortcut.com/api/v3/stories/"
     request_body = {"workflow_state_id": str(desired_workflow_state_id)}
 
