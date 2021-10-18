@@ -104,7 +104,7 @@ if __name__ == "__main__":
         "Shortcut-Token": setting.shortcut_api_token,
     }
     
-    BASE_URL = "https://api.app.shortcut.io/api/v3/stories/"
+    BASE_URL = "https://api.app.shortcut.com/api/v3/stories/"
     request_body = {"workflow_state_id": str(desired_workflow_state_id)}
 
     print("----------Sending clubhouse api----------")
