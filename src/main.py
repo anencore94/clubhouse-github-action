@@ -27,7 +27,9 @@ def parse_story_from_pr_body(body: str) -> Set[str]:
         )
 
     for match in regexp.finditer(body):
-        candidates.append(match.group())
+        match_string = match.group()
+        print("matched :", match_string)
+        candidates.append(match_string)
 
     if not candidates:
         print("no matching stories")
