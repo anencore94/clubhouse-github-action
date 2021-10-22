@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
     # check current pr's state and find desired_workflow_state_id
     pr_state = res.json()["state"]
-    desired_workflow_state_id = (
+    desired_workflow_state_id = setting.wip_id if is_wip_on_title else (
         setting.open_id if pr_state == "open" else setting.closed_id
     )
 
