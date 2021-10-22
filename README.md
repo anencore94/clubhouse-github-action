@@ -26,8 +26,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: 'CH-GH-TEST'
-      uses: anencore94/clubhouse-github-action@v2.0.3
+    - name: 'Synchronize Github PR to Shortcut story'
+      uses: anencore94/clubhouse-github-action@v2.0.4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         pr_number: ${{ github.event.number }}
