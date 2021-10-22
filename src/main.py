@@ -83,8 +83,8 @@ if __name__ == "__main__":
         print("github token or github relevant inputs are invalid")
         sys.exit(1)
 
-    pr_body = res.json()["body"]
-    print(f"pr_body is {pr_body}")
+    pr_title, pr_body = res.json()["title"], res.json()["body"]
+    print(f"pr_title is {pr_title}, and pr_body is {pr_body}")
 
     # pass, if body is empty
     if not pr_body:
