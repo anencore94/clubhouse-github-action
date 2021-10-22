@@ -11,6 +11,11 @@ import requests
 from pydantic import BaseSettings, Field
 
 
+def parse_wip_on_title(title: str) -> bool:
+    """To be implement"""
+    return False
+
+
 def parse_story_from_pr_body(body: str) -> Set[str]:
     """
     parse keyword (Fixes [ch-xxx]) from pr_body
@@ -85,6 +90,10 @@ if __name__ == "__main__":
 
     pr_title, pr_body = res.json()["title"], res.json()["body"]
     print(f"pr_title is {pr_title}, and pr_body is {pr_body}")
+
+    use_wip, is_wip_on_title = setting.wip_id and setting.wip_keyword, False
+    if use_wip:
+        is_wip_on_title = parse_wip_on_title(pr_title)
 
     # pass, if body is empty
     if not pr_body:
