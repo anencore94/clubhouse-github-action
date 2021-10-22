@@ -11,8 +11,10 @@ import requests
 from pydantic import BaseSettings, Field
 
 
-def parse_wip_on_title(title: str) -> bool:
-    """To be implement"""
+def parse_wip_on_title(title: str, wip_keyword: str) -> bool:
+    regexp = re.compile(f"{wip_keyword}", re.IGNORECASE)
+    if regexp.match(pr_title):
+        return True
     return False
 
 
