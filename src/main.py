@@ -57,6 +57,8 @@ class Settings(BaseSettings):
     shortcut_api_token: str = Field(..., env="INPUT_SHORTCUT_API_TOKEN")
     open_id: str = Field(..., env="INPUT_PR_OPENED")
     closed_id: str = Field(..., env="INPUT_PR_CLOSED")
+    wip_id: str = Field(env="INPUT_PR_WIP", default="")
+    wip_keyword: str = Field(env="INPUT_WIP_KEYWORD", default="")
 
 
 if __name__ == "__main__":
