@@ -11,6 +11,13 @@ import requests
 from pydantic import BaseSettings, Field
 
 
+def parse_wip_on_title(title: str, wip_keyword: str) -> bool:
+    regexp = re.compile(wip_keyword, re.IGNORECASE)
+    if regexp.match(title):
+        return True
+    return False
+
+
 def parse_story_from_pr_body(body: str) -> Set[str]:
     """
     parse keyword (Fixes [ch-xxx]) from pr_body
@@ -57,6 +64,8 @@ class Settings(BaseSettings):
     shortcut_api_token: str = Field(..., env="INPUT_SHORTCUT_API_TOKEN")
     open_id: str = Field(..., env="INPUT_PR_OPENED")
     closed_id: str = Field(..., env="INPUT_PR_CLOSED")
+    wip_id: str = Field(env="INPUT_PR_WIP", default="")
+    wip_keyword: str = Field(env="INPUT_WIP_KEYWORD", default="")
 
 
 if __name__ == "__main__":
@@ -81,8 +90,13 @@ if __name__ == "__main__":
         print("github token or github relevant inputs are invalid")
         sys.exit(1)
 
-    pr_body = res.json()["body"]
-    print(f"pr_body is {pr_body}")
+    pr_title, pr_body = res.json()["title"], res.json()["body"]
+    print(f"pr_title is {pr_title}, and pr_body is {pr_body}")
+
+    is_wip_on_title = False
+    use_wip = setting.wip_id and setting.wip_keyword
+    if use_wip:
+        is_wip_on_title = parse_wip_on_title(title=pr_title, wip_keyword=setting.wip_keyword)
 
     # pass, if body is empty
     if not pr_body:
@@ -98,7 +112,7 @@ if __name__ == "__main__":
 
     # check current pr's state and find desired_workflow_state_id
     pr_state = res.json()["state"]
-    desired_workflow_state_id = (
+    desired_workflow_state_id = setting.wip_id if is_wip_on_title else (
         setting.open_id if pr_state == "open" else setting.closed_id
     )
 
