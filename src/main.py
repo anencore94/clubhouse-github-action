@@ -96,7 +96,7 @@ if __name__ == "__main__":
     is_wip_on_title = False
     use_wip = setting.wip_id and setting.wip_keyword
     if use_wip:
-        is_wip_on_title = parse_wip_on_title(pr_title)
+        is_wip_on_title = parse_wip_on_title(title=pr_title, wip_keyword=setting.wip_keyword)
 
     # pass, if body is empty
     if not pr_body:
