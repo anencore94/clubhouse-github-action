@@ -27,13 +27,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'Synchronize Github PR to Shortcut story'
-      uses: anencore94/clubhouse-github-action@v2.0.4
+      uses: anencore94/clubhouse-github-action@v2.1.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         pr_number: ${{ github.event.number }}
         shortcut_api_token: ${{ secrets.SHORTCUT_API_TOKEN }} # you need to setup this
         pr_opened: 500001413 # you need to setup this
         pr_closed: 500001409 # you need to setup this
+        pr_wip: 500001411 # you need to setup this (Optional)
+        wip_keyword: WIP # you need to setup this (Optional)
 ```
 
 ### Input parameters
@@ -48,6 +50,10 @@ jobs:
     - you could generate token by following [official docs](https://help.shortcut.com/hc/en-us/articles/205701199-Shortcut-API-Tokens)
     - and you need to store it in your repository secret by following [official docs](https://docs.github.com/en/actions/reference/encrypted-secrets)
 - **pr_opened**
-  - your desired clubhouse workflow state id when pr opened
+  - your desired shortcut workflow state id when pr opened
 - **pr_closed**
-  - your desired clubhouse workflow state id when pr closed (or merged)
+  - your desired shortcut workflow state id when pr closed (or merged)
+- **pr_wip**
+  - your desired shortcut workflow state id when pr is working in progress (Optional)
+- **wip_keyword**
+  - The keyword which indicates the pr is working in progress (Optional)
