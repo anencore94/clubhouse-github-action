@@ -16,11 +16,11 @@ inputs:
   pr_closed:
     description: "desired shortcut workflow state if pr closed or merged"
     required: true
-  wip_id:
+  pr_wip:
     description: "desired shortcut workflow state if pr is working in progress"
     required: false
   wip_keyword:
-    description: "The keyword which indicates the pr is working in progress"
+    description: "the keyword which indicates the pr is working in progress"
     required: false
 runs:
   using: "docker"
