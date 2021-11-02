@@ -11,11 +11,17 @@ inputs:
     description: "shortcut api token"
     required: true
   pr_opened:
-    description: "desired clubhouse workflow state if pr opened"
+    description: "desired shortcut workflow state if pr opened"
     required: true
   pr_closed:
-    description: "desired clubhouse workflow state if pr closed or merged"
+    description: "desired shortcut workflow state if pr closed or merged"
     required: true
+  wip_id:
+    description: "desired shortcut workflow state if pr is working in progress"
+    required: false
+  wip_keyword:
+    description: "The keyword which indicates the pr is working in progress"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
